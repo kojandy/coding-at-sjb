@@ -1,7 +1,7 @@
 #!/bin/sh
 # https://www.drewsilcock.co.uk/compiling-zsh
 
-INSTALL_DIR=$HOME/.local
+INSTALL_DIR=/tmp/sjb/local
 TEMP_DIR=$(mktemp -d)
 
 # ncurses

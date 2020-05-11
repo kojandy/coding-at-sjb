@@ -36,3 +36,5 @@ autoconf
 
 make
 make install
+
+rm -rf $TEMP_DIR

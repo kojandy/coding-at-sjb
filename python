@@ -7,7 +7,7 @@ cd $TEMP_DIR
 git clone -b '3.8' --single-branch --depth 1 'https://github.com/python/cpython'
 cd cpython
 
-./configure --prefix=/tmp/sjb/local --enable-shared
+./configure --prefix=/tmp/sjb/local
 make
 make install
 

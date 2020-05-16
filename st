@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd $HOME
-wget 'https://github.com/kojandy/coding-at-sjb/releases/download/2020.05/st'
+wget 'https://github.com/kojandy/st/releases/download/2020.05.16/st'
 chmod +x st

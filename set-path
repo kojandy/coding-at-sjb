@@ -1,3 +1,0 @@
-#!/bin/sh
-echo 'export PATH=/tmp/sjb/local/bin:$PATH' >> ~/.bashrc
-echo 'export PATH=/tmp/sjb/local/bin:$PATH' > ~/.zshrc.local

@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "[custom-keybindings/custom0]
+binding=['<Super>Return']
+command='$HOME/st'
+name='st'
+
+[/]
+custom-list=['custom0']" | dconf load /org/cinnamon/desktop/keybindings/

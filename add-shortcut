@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "[custom-keybindings/custom0]
 binding=['<Super>Return']
-command='$HOME/st'
+command='$HOME/st -e /tmp/sjb/local/bin/zsh'
 name='st'
 
 [/]

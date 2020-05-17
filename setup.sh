@@ -47,8 +47,9 @@ name='st'
 [/]
 custom-list=['custom0']" | dconf load /org/cinnamon/desktop/keybindings/
 
-# set path
-echo "export PATH=$SJB_HOME/local/bin:$PATH" > $HOME/.zshrc.local
+# set .zshrc.local
+echo "export PATH=$SJB_HOME/local/bin:$PATH
+source $HOME/.autojump/etc/profile.d/autojump.sh" > $HOME/.zshrc.local
 
 # clean up
 rm -rf $TEMP_DIR

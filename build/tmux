@@ -1,0 +1,38 @@
+#!/bin/sh
+
+INSTALL_DIR=/tmp/sjb/local
+
+export CFLAGS=' -fPIC'
+export CXXFLAGS=' -fPIC'
+
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+wget -O libevent.tar.gz https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
+tar -xf libevent.tar.gz --strip-components=1
+./configure --prefix=$INSTALL_DIR --enable-shared
+make
+make install
+rm -rf $TEMP_DIR
+
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+wget -O ncurses.tar.gz https://invisible-mirror.net/archives/ncurses/ncurses-6.2.tar.gz
+tar -xf ncurses.tar.gz --strip-components=1
+./configure --prefix=$INSTALL_DIR --enable-shared
+make
+make install
+rm -rf $TEMP_DIR
+
+export PATH=$INSTALL_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export CFLAGS=-I$INSTALL_DIR/include
+export CPPFLAGS="-I$INSTALL_DIR/include" LDFLAGS="-L$INSTALL_DIR/lib"
+
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+wget -O tmux.tar.gz https://github.com/tmux/tmux/releases/download/3.1b/tmux-3.1b.tar.gz
+tar -xf tmux.tar.gz --strip-components=1
+./configure --prefix=$INSTALL_DIR --enable-shared
+make
+make install
+rm -rf $TEMP_DIR

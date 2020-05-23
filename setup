@@ -1,3 +1,4 @@
+#!/bin/sh
 TEMP_DIR=$(mktemp -d)
 SJB_HOME=/tmp/sjb
 

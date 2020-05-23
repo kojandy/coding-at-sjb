@@ -4,9 +4,9 @@ SJB_HOME=/tmp/sjb
 
 mkdir -p $SJB_HOME/local
 
-# install zsh
-wget -O $TEMP_DIR/zsh.tar.gz 'https://github.com/kojandy/coding-at-sjb/releases/download/20.05.1/zsh.tar.gz'
-tar -xf $TEMP_DIR/zsh.tar.gz -C $SJB_HOME/local
+# install locals (zsh, vim)
+wget -O $TEMP_DIR/local.tar.gz 'https://github.com/kojandy/coding-at-sjb/releases/download/20.05.3/local.tar.gz'
+tar -xf $TEMP_DIR/local.tar.gz -C $SJB_HOME/local
 
 # install autojump
 cd $TEMP_DIR

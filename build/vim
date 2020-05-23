@@ -1,0 +1,37 @@
+#!/bin/sh
+
+INSTALL_DIR=/tmp/sjb/local
+TEMP_DIR=$(mktemp -d)
+
+# ncurses
+
+cd $TEMP_DIR
+wget https://ftp.gnu.org/pub/gnu/ncurses/ncurses-6.2.tar.gz
+tar -xf ncurses-6.2.tar.gz
+cd ncurses-6.2
+
+export CXXFLAGS=' -fPIC'
+export CFLAGS=' -fPIC'
+
+./configure --prefix=$INSTALL_DIR --enable-shared
+
+make
+make install
+
+# vim
+
+cd $TEMP_DIR
+git clone --depth 1 https://github.com/vim/vim
+cd vim/src
+
+export PATH=$INSTALL_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export CFLAGS=-I$INSTALL_DIR/include
+export CPPFLAGS="-I$INSTALL_DIR/include" LDFLAGS="-L$INSTALL_DIR/lib"
+
+./configure --prefix=$INSTALL_DIR
+
+make
+make install
+
+rm -rf $TEMP_DIR

@@ -19,20 +19,31 @@ export CFLAGS=' -fPIC'
 make
 make install
 
+export PATH=$INSTALL_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$INSTALL_DIR/lib:$LD_LIBRARY_PATH
+export CFLAGS=-I$INSTALL_DIR/include
+export CPPFLAGS="-I$INSTALL_DIR/include" LDFLAGS="-L$INSTALL_DIR/lib"
+
 # zsh
 
 cd $TEMP_DIR
 git clone --depth 1 https://github.com/zsh-users/zsh
 cd zsh
 
-export PATH=$INSTALL_DIR/bin:$PATH
-export LD_LIBRARY_PATH=$INSTALL_DIR/lib:$LD_LIBRARY_PATH
-export CFLAGS=-I$INSTALL_DIR/include
-export CPPFLAGS="-I$INSTALL_DIR/include" LDFLAGS="-L$INSTALL_DIR/lib"
-
 autoheader
 autoconf
 ./configure --prefix=$INSTALL_DIR --enable-shared
+
+make
+make install
+
+# vim
+
+cd $TEMP_DIR
+git clone --depth 1 https://github.com/vim/vim
+cd vim/src
+
+./configure --prefix=$INSTALL_DIR --enable-python3interp=yes
 
 make
 make install

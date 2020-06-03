@@ -45,5 +45,8 @@ custom-list=['custom0']" | dconf load /org/cinnamon/desktop/keybindings/
 # set .zshrc.local
 echo "export PATH=$SJB_HOME/local/bin:\$PATH" > $HOME/.zshrc.local
 
+# execute zsh when bash is executed
+echo "exec zsh" > $HOME/.bashrc
+
 # clean up
 rm -rf $TEMP_DIR

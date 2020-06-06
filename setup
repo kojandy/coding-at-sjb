@@ -15,7 +15,7 @@ tar -xf $TEMP_DIR/node-v12.16.3-linux-x64.tar.gz --strip-components=1 -C $SJB_HO
 # install dotfiles
 DOTFILES=$HOME/.dotfiles
 XDG_CONFIG_HOME=$HOME/.config
-git clone --depth 1 https://github.com/kojandy/.dotfiles $DOTFILES
+git clone https://github.com/kojandy/.dotfiles $DOTFILES
 $DOTFILES/install/zgen
 ln -sf $DOTFILES/profile $HOME/.profile
 ln -sf $DOTFILES/vim/vimrc $HOME/.vimrc

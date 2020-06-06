@@ -1,0 +1,62 @@
+#!/bin/sh
+TEMP_DIR=$(mktemp -d)
+INSTALL_DIR=/tmp/sjb/local
+
+export PKG_CONFIG_PATH=$INSTALL_DIR/lib/pkgconfig
+export CFLAGS=-I$INSTALL_DIR/include
+export LDFLAGS=-L$INSTALL_DIR/lib
+export PREFIX=$INSTALL_DIR
+
+# xcb-proto
+cd $TEMP_DIR
+wget 'https://xcb.freedesktop.org/dist/xcb-proto-1.14.tar.gz'
+tar -xf xcb-proto-1.14.tar.gz
+cd xcb-proto-1.14
+./configure --prefix=$INSTALL_DIR
+make && make install
+
+# libxcb
+cd $TEMP_DIR
+wget 'https://xcb.freedesktop.org/dist/libxcb-1.14.tar.gz'
+tar -xf libxcb-1.14.tar.gz
+cd libxcb-1.14
+./configure --prefix=$INSTALL_DIR
+make && make install
+
+# xcb-util-wm
+cd $TEMP_DIR
+wget 'https://xcb.freedesktop.org/dist/xcb-util-wm-0.4.1.tar.gz'
+tar -xf xcb-util-wm-0.4.1.tar.gz
+cd xcb-util-wm-0.4.1
+./configure --prefix=$INSTALL_DIR
+make && make install
+
+# xcb-util
+cd $TEMP_DIR
+wget 'https://xcb.freedesktop.org/dist/xcb-util-0.4.0.tar.gz'
+tar -xf xcb-util-0.4.0.tar.gz
+cd xcb-util-0.4.0
+./configure --prefix=$INSTALL_DIR
+make && make install
+
+# xcb-util-keysyms
+cd $TEMP_DIR
+wget 'https://xcb.freedesktop.org/dist/xcb-util-keysyms-0.4.0.tar.gz'
+tar -xf xcb-util-keysyms-0.4.0.tar.gz
+cd xcb-util-keysyms-0.4.0
+./configure --prefix=$INSTALL_DIR
+make && make install
+
+# bspwm
+cd $TEMP_DIR
+git clone https://github.com/baskerville/bspwm
+cd bspwm
+make && make install
+
+# sxhkd
+cd $TEMP_DIR
+git clone https://github.com/baskerville/sxhkd
+cd sxhkd
+make && make install
+
+rm -rf $TEMP_DIR

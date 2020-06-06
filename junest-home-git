@@ -1,0 +1,4 @@
+#!/bin/sh
+git clone --depth=1 --no-checkout https://github.com/kojandy/.junest /tmp/sjb/junest/home_git
+mv /tmp/sjb/junest/home_git/.git /tmp/sjb/junest/home/.git
+rmdir /tmp/sjb/junest/home_git

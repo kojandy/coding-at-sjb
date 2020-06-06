@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "export PATH=/tmp/sjb/junest/bin:\$PATH
+export JUNEST_HOME=/tmp/sjb/junest/home" > $HOME/.bashrc
+git clone https://github.com/fsquillace/junest /tmp/sjb/junest
+mkdir -p /tmp/sjb/junest/home
+wget -O /tmp/sjb/junest/home.tar.gz --no-check-certificate 'https://nas.kojandy.com/share.cgi?ssid=0Fv2NiO&filename=junest-x86_64.tar.gz&openfolder=forcedownload'
+tar -xf /tmp/sjb/junest/home.tar.gz -C /tmp/sjb/junest/home

@@ -18,5 +18,5 @@ export LD_LIBRARY_PATH=/tmp/sjb/local/lib
 pkill -x cinnamon
 gsettings set org.nemo.desktop show-desktop-icons false
 cd $HOME
-setsid bspwm
+setsid bspwm &
 pkill -QUIT code

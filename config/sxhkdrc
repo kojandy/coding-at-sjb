@@ -1,0 +1,85 @@
+# bspwm
+super + q
+    bspc node --close
+
+super + f
+    bspc desktop --layout next
+
+super + semicolon
+    windowpromoter
+
+super + {t,shift+t,s}
+    bspc node --state {tiled,pseudo_tiled,floating}
+
+super + {minus,equal}
+    bspc config -d focused window_gap {0,50}
+
+super + {plus,underscore}
+    bspc config -d focused window_gap $(($(bspc config -d focused window_gap) {+,-} 10))
+
+super + {m,ctrl+x,ctrl+s}
+    bspc node --flag {hidden,locked,sticky}
+
+super + shift + m
+    bspc node $(bspc query --nodes --node .hidden.local | tail -n1) --flag hidden=off --focus
+
+super + {_,shift+}{h,j,k,l}
+    bspc node --{focus,swap} {west,south,north,east}
+
+super + {_,shift+}{1-9,0}
+    bspc {desktop --focus, node --to-desktop} '^{1-9,10}'
+
+super + {comma,period}
+    bspc node --focus {prev,next}.local
+
+super + bracket{left,right}
+    bspc desktop --focus {prev,next}.occupied.local
+
+super + shift + bracket{left,right}
+    bspc desktop --swap {prev,next}.local
+
+super + grave
+    bspc desktop --focus last
+
+super + Tab
+    bspc node --focus last
+
+super + ctrl + {h,j,k,l}
+    bspc node --presel-dir {west,south,north,east}
+
+super + ctrl + {1-9}
+    bspc node --presel-ratio 0.{1-9}
+
+super + ctrl + space
+    bspc query --nodes --desktop | xargs -I id -n 1 bspc node id --presel-dir cancel
+
+super + alt + {h,j,k,l}
+    bspc node --resize {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+super + alt + shift + {h,j,k,l}
+    bspc node --resize {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + {Left,Down,Up,Right}
+    bspc node --move {-40 0,0 40,0 -40,40 0}
+
+# Launch apps
+super + Return
+    /tmp/sjb/local/bin/st -e /tmp/sjb/local/bin/zsh
+
+super + space
+    rofi -show run
+
+super + slash
+    rofi -show window
+
+super + shift + w
+    chromium-browser
+
+super + shift + f
+    nemo
+
+super + Escape
+    cinnamon-screensaver-command -a
+
+super + shift + Escape
+    pkill cinnamon

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+TEMP_DIR=$(mktemp -d)
+cd $TEMP_DIR
+wget -O nnn.tar.gz 'https://github.com/jarun/nnn/releases/download/v3.2/nnn-static-3.2.x86-64.tar.gz'
+tar -xf nnn.tar.gz
+mv nnn-static /tmp/sjb/local/bin/nnn
+rm -rf $TEMP_DIR

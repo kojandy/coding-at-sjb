@@ -1,4 +1,4 @@
 #!/bin/sh
 ./fira-code &
-./basic
+./base
 ./bspwm

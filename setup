@@ -1,4 +1,6 @@
 #!/bin/sh
 ./fira-code &
 ./base
+/tmp/sjb/local/bin/zsh -c 'source ~/.zshrc && exit'
+/tmp/sjb/local/bin/vim +PlugInstall +qa
 ./bspwm

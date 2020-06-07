@@ -2,8 +2,8 @@
 
 # install
 TEMP_DIR=$(mktemp -d)
-wget -O $TEMP_DIR/bspwm.tar.gz 'https://github.com/kojandy/coding-at-sjb/releases/download/20.06.1/bspwm.tar.gz'
-tar -xf $TEMP_DIR/bspwm.tar.gz -C /tmp/sjb/local
+wget -O $TEMP_DIR/bspwm.tar.xz 'https://github.com/kojandy/coding-at-sjb/releases/download/20.06.2/bspwm.tar.xz'
+tar -xf $TEMP_DIR/bspwm.tar.xz -C /tmp/sjb/local
 rm -rf $TEMP_DIR
 
 # copy configs

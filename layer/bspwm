@@ -13,7 +13,7 @@ ln -sf $HOME/coding-at-sjb/config/bspwmrc $HOME/.config/bspwm/bspwmrc
 ln -sf $HOME/coding-at-sjb/config/sxhkdrc $HOME/.config/sxhkd/sxhkdrc
 
 # run
-export PATH=/tmp/sjb/local/bin:$PATH
+export PATH=/tmp/sjb/local/bin:$HOME/.dotfiles/bin:$PATH
 export LD_LIBRARY_PATH=/tmp/sjb/local/lib
 pkill -x cinnamon
 gsettings set org.nemo.desktop show-desktop-icons false

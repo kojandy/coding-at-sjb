@@ -11,6 +11,7 @@ mkdir -p $HOME/.config/bspwm
 mkdir -p $HOME/.config/sxhkd
 ln -sf $HOME/coding-at-sjb/config/bspwmrc $HOME/.config/bspwm/bspwmrc
 ln -sf $HOME/coding-at-sjb/config/sxhkdrc $HOME/.config/sxhkd/sxhkdrc
+ln -sf $HOME/coding-at-sjb/config/polybar $HOME/.config/polybar
 
 # run
 export PATH=/tmp/sjb/local/bin:$HOME/.dotfiles/bin:$PATH

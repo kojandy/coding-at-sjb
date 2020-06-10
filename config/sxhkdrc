@@ -83,3 +83,9 @@ super + Escape
 
 super + shift + Escape
     pkill cinnamon
+
+{F9,F10}
+    playerctl {play-pause,next}
+
+{F11,F12}
+    amixer --quiet set Master 5%{-,+} unmute

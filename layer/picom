@@ -1,0 +1,13 @@
+#!/bin/sh
+
+TEMP_DIR=$(mktemp -d)
+
+cd $TEMP_DIR
+curl -LO https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/picom.tar.xz
+tar -xf picom.tar.xz --strip-components=1 -C /tmp/sjb/local
+rm -rf $TEMP_DIR
+
+mkdir -p $HOME/.config/picom
+ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
+
+setsid picom &

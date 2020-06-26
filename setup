@@ -4,3 +4,4 @@ $HOME/coding-at-sjb/layer/base
 /tmp/sjb/local/bin/zsh -c 'source ~/.zshrc && exit'
 /tmp/sjb/local/bin/vim +PlugInstall +qa
 $HOME/coding-at-sjb/layer/bspwm
+$HOME/coding-at-sjb/layer/picom

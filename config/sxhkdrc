@@ -12,7 +12,7 @@ super + {t,shift+t,s}
     bspc node --state {tiled,pseudo_tiled,floating}
 
 super + {minus,equal}
-    bspc config -d focused window_gap {0,50}
+    bspc config -d focused window_gap {0,10}
 
 super + {plus,underscore}
     bspc config -d focused window_gap $(($(bspc config -d focused window_gap) {+,-} 10))

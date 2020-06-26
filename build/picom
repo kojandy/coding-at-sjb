@@ -1,0 +1,80 @@
+#!/bin/sh
+
+TEMP_DIR=$(mktemp -d)
+
+PATH=$TEMP_DIR/bin:$PATH
+
+mkdir $TEMP_DIR/bin
+
+cd $TEMP_DIR
+
+curl -LO https://github.com/ninja-build/ninja/releases/download/v1.10.0/ninja-linux.zip
+unzip ninja-linux.zip
+mv ninja bin/
+
+curl -LO https://github.com/mesonbuild/meson/releases/download/0.54.3/meson-0.54.3.tar.gz
+tar -xf meson-0.54.3.tar.gz --strip-components=1 -C bin
+mv bin/meson.py bin/meson
+
+curl -LO https://github.com/Kitware/CMake/releases/download/v3.18.0-rc2/cmake-3.18.0-rc2-Linux-x86_64.tar.gz
+tar -xf cmake-3.18.0-rc2-Linux-x86_64.tar.gz --strip-components=1
+
+curl -LO http://dist.schmorp.de/libev/libev-4.33.tar.gz
+tar -xf libev-4.33.tar.gz
+cd libev-4.33
+./configure --prefix=$TEMP_DIR
+make
+make install
+
+cd $TEMP_DIR
+curl -LO https://xcb.freedesktop.org/dist/xcb-util-renderutil-0.3.9.tar.gz
+tar -xf xcb-util-renderutil-0.3.9.tar.gz
+cd xcb-util-renderutil-0.3.9
+./configure --prefix=$TEMP_DIR
+make
+make install
+
+cd $TEMP_DIR
+curl -LO https://xcb.freedesktop.org/dist/xcb-util-image-0.4.0.tar.gz
+tar -xf xcb-util-image-0.4.0.tar.gz
+cd xcb-util-image-0.4.0
+PKG_CONFIG_PATH="/tmp/sjb/local/lib/pkgconfig" ./configure --prefix=$TEMP_DIR
+make
+make install
+
+cd $TEMP_DIR
+git clone https://github.com/troydhanson/uthash
+
+cd $TEMP_DIR
+curl -LO https://hyperrealm.github.io/libconfig/dist/libconfig-1.7.2.tar.gz
+tar -xf libconfig-1.7.2.tar.gz
+cd libconfig-1.7.2
+./configure --prefix=$TEMP_DIR
+make
+make install
+
+cd $TEMP_DIR
+curl -LO https://ftp.pcre.org/pub/pcre/pcre-8.44.zip
+unzip pcre-8.44.zip
+cd pcre-8.44
+./configure --prefix=$TEMP_DIR
+make
+make install
+
+cd $TEMP_DIR
+curl -LO https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/zstd.tar.xz
+tar -xf zstd.tar.xz --strip-components=2 -C bin
+
+cd $TEMP_DIR
+curl -LO https://jpn.mirror.pkgbuild.com/core/os/x86_64/dbus-1.12.18-1-x86_64.pkg.tar.zst
+tar -I zstd -xf dbus-1.12.18-1-x86_64.pkg.tar.zst --strip-components=1
+
+cd $TEMP_DIR
+git clone https://github.com/ibhagwan/picom.git
+cd picom
+PKG_CONFIG_PATH="$TEMP_DIR/lib/pkgconfig:/tmp/sjb/local/lib/pkgconfig" CPPFLAGS="-I$TEMP_DIR/uthash/src -I$TEMP_DIR/include/dbus-1.0 -I$TEMP_DIR/lib/dbus-1.0/include" LDFLAGS="-L$TEMP_DIR/lib -L/tmp/sjb/local/lib" meson --buildtype=release . build
+ninja -C build
+
+cp build/src/picom /tmp/sjb/local/bin/picom
+
+rm -rf $TEMP_DIR

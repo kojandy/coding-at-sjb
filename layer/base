@@ -48,5 +48,8 @@ echo "export PATH=$SJB_HOME/local/bin:$HOME/.dotfiles/bin:\$PATH" > $HOME/.zshrc
 # execute zsh when bash is executed
 echo "exec $SJB_HOME/local/bin/zsh" > $HOME/.bashrc
 
+# Add symbolic link to downloads directory
+ln -sf $HOME/다운로드 $HOME/Downloads
+
 # clean up
 rm -rf $TEMP_DIR

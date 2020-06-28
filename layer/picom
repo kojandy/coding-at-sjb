@@ -10,4 +10,5 @@ rm -rf $TEMP_DIR
 mkdir -p $HOME/.config/picom
 ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
 
+export PATH=/tmp/sjb/local/bin:$PATH
 setsid picom &

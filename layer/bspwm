@@ -22,4 +22,3 @@ gsettings set org.nemo.desktop show-desktop-icons false
 # gsettings set org.cinnamon.desktop.background picture-uri "file:///"
 cd $HOME
 setsid bspwm &
-pkill -QUIT code

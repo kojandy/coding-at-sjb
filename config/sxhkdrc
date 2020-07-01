@@ -64,7 +64,7 @@ super + {Left,Down,Up,Right}
 
 # Launch apps
 super + Return
-    /tmp/sjb/local/bin/st -e /tmp/sjb/local/bin/zsh
+    kitty
 
 super + space
     rofi -show run

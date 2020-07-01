@@ -24,23 +24,17 @@ mkdir -p $XDG_CONFIG_HOME/git
 ln -sf $DOTFILES/git/config $XDG_CONFIG_HOME/git/config
 ln -sf $DOTFILES/git/ignore $XDG_CONFIG_HOME/git/ignore
 
-# install st
-wget -O $SJB_HOME/local/bin/st 'https://github.com/kojandy/st/releases/download/20.05.1/st'
-chmod +x $SJB_HOME/local/bin/st
+# install kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ln -sf $HOME/.local/kitty.app/bin/kitty $SJB_HOME/local/bin/kitty
+mkdir -p $XDG_CONFIG_HOME/kitty
+ln -sf $DOTFILES/kitty/kitty.conf $XDG_CONFIG_HOME/kitty/kitty.conf
 
 # map caps lock to control
 echo "remove Lock = Caps_Lock
 keysym Caps_Lock = Control_L
 add Control = Control_L" > $HOME/.xmodmap
 xmodmap $HOME/.xmodmap
-
-# set terminal keyboard shortcut
-echo "[custom-keybindings/custom0]
-binding=['<Super>Return']
-command='$SJB_HOME/local/bin/st -e $SJB_HOME/local/bin/zsh'
-name='st'
-[/]
-custom-list=['custom0']" | dconf load /org/cinnamon/desktop/keybindings/
 
 # set .zshrc.local
 echo "export PATH=$SJB_HOME/local/bin:$HOME/.dotfiles/bin:\$PATH" > $HOME/.zshrc.local

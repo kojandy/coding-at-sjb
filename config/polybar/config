@@ -16,6 +16,9 @@ module-margin = 2
 padding-right = 2
 
 font-0 = Noto Sans CJK KR:size=10:weight=bold;2
+font-1 = Font Awesome 5 Free:style=solid:size=10;2
+; font-2 = Font Awesome 5 Free:style=regular:size=10;2
+; font-3 = Font Awesome 5 Brands:size=10;2
 
 modules-left = bspwm
 modules-center = title
@@ -41,20 +44,20 @@ label-empty =
 [module/alsa]
 type = internal/alsa
 
-label-volume = %percentage%%
+label-volume =  %percentage%%
 
-label-muted = muted
+label-muted =  muted
 
 [module/time]
 type = internal/date
 
 date =
-date-alt = "%Y/%m/%d %a"
+date-alt = "%Y/%m/%d %a "
 
 time = %l:%M %p
 time-alt = %H:%M:%S
 
-label = %date% %time%
+label = %date%%time%
 
 [module/title]
 type = internal/xwindow

@@ -1,12 +1,8 @@
 #!/bin/sh
 
 # install
-TEMP_DIR=$(mktemp -d)
-wget -O $TEMP_DIR/bspwm.tar.xz 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/bspwm.tar.xz'
-tar -xf $TEMP_DIR/bspwm.tar.xz -C /tmp/sjb/local --strip-components=1
-wget -O $TEMP_DIR/polybar.tar.xz 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/polybar.tar.xz'
-tar -xf $TEMP_DIR/polybar.tar.xz -C /tmp/sjb/local --strip-components=1
-rm -rf $TEMP_DIR
+curl -# 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/bspwm.tar.xz' | tar -xJ --strip-components=1 -C /tmp/sjb/local
+curl -# 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/polybar.tar.xz' | tar -xJ --strip-components=1 -C /tmp/sjb/local
 
 # copy configs
 mkdir -p $HOME/.config/bspwm

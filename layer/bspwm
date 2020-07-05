@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # install
+echo Installing bspwm...
 curl -# 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/bspwm.tar.xz' | tar -xJ --strip-components=1 -C /tmp/sjb/local
+echo Installing polybar...
 curl -# 'https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/polybar.tar.xz' | tar -xJ --strip-components=1 -C /tmp/sjb/local
 
 # copy configs

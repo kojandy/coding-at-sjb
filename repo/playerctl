@@ -1,8 +1,2 @@
 #!/bin/sh
-TEMP_DIR=$(mktemp -d)
-cd $TEMP_DIR
-wget https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb
-dpkg -x playerctl-2.1.1_amd64.deb .
-cd usr
-cp -r * /tmp/sjb/local
-rm -rf $TEMP_DIR
+curl -L# 'https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb

@@ -1,8 +1,77 @@
 #!/bin/sh
+SJB_HOME=/tmp/sjb
+DOTFILES=$HOME/.dotfiles
+XDG_CONFIG_HOME=$HOME/.config
+
+mkdir -p $SJB_HOME/usr
+
+get_pkg() {
+    echo Installing $1...
+    curl -# "https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/$1.tar.xz" | tar -xJ -C $SJB_HOME
+}
+
+# install packages from sjb_pkg-repo
+get_pkg zsh
+get_pkg bspwm
+get_pkg polybar
+get_pkg picom
+
+# install nvim
+echo Installing nvim...
+curl -L# 'https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr
+
+# install node
+echo Installing node...
+curl -# 'https://nodejs.org/dist/v12.16.3/node-v12.16.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr
+
+# install kitty
+echo Installing kitty...
+curl -L# 'https://github.com/kovidgoyal/kitty/releases/download/v0.18.1/kitty-0.18.1-x86_64.txz' | tar -xJ -C $SJB_HOME/usr
+
+# map caps lock to control
+echo "remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L" > $HOME/.xmodmap
+xmodmap $HOME/.xmodmap
+
+# execute zsh when bash is executed
+echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
+
+# Add symbolic link to downloads directory
+ln -sf $HOME/다운로드 $HOME/Downloads
+
+# install configs
+git clone https://github.com/kojandy/.dotfiles $DOTFILES
+$DOTFILES/install/zgen
+ln -sf $DOTFILES/profile $HOME/.profile
+ln -sf $DOTFILES/vim/vimrc $HOME/.vimrc
+ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
+mkdir -p $XDG_CONFIG_HOME/git
+ln -sf $DOTFILES/git/config $XDG_CONFIG_HOME/git/config
+ln -sf $DOTFILES/git/ignore $XDG_CONFIG_HOME/git/ignore
+mkdir -p $XDG_CONFIG_HOME/bspwm
+mkdir -p $XDG_CONFIG_HOME/sxhkd
+ln -sf $HOME/coding-at-sjb/config/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
+ln -sf $HOME/coding-at-sjb/config/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
+ln -sf $HOME/coding-at-sjb/config/polybar $XDG_CONFIG_HOME/polybar
+mkdir -p $HOME/.config/picom
+ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
+mkdir -p $XDG_CONFIG_HOME/kitty
+ln -sf $DOTFILES/kitty/kitty.conf $XDG_CONFIG_HOME/kitty/kitty.conf
+
 $HOME/coding-at-sjb/repo/fira-code &
-$HOME/coding-at-sjb/layer/base
-/tmp/sjb/local/bin/zsh -c 'source ~/.zshrc && exit'
-/tmp/sjb/local/bin/vim +PlugInstall +qa
-$HOME/coding-at-sjb/layer/bspwm
-$HOME/coding-at-sjb/layer/picom
+
+export PATH=$SJB_HOME/usr/bin:$PATH
+export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
+zsh -c 'source ~/.zshrc && exit'
+vim +PlugInstall +qa
+
+pkill -x cinnamon
+gsettings set org.nemo.desktop show-desktop-icons false
+# change background
+# gsettings set org.cinnamon.desktop.background picture-uri "file:///"
+cd $HOME
+setsid bspwm &
+setsid picom &
+
 pkill -QUIT code

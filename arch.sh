@@ -1,6 +1,6 @@
 #!/bin/bash
 REPO_DIR=/tmp/sjb/repo
-INSTALL_DIR=/tmp/sjb/local
+INSTALL_DIR=/tmp/sjb
 
 repos='core extra community'
 url='http://ftp.harukasan.org/archlinux/$repo/os/$arch'
@@ -56,10 +56,10 @@ install() {
         url=${url/\$repo/$repo}/$filename
         case $filename in
             *.zst)
-                curl $url | tar -C $TEMP_DIR -I zstd -x --strip-components=1
+                curl $url | tar -C $TEMP_DIR -I zstd -x
                 ;;
             *.xz)
-                curl $url | tar -C $TEMP_DIR -xJ --strip-components=1
+                curl $url | tar -C $TEMP_DIR -xJ
                 ;;
         esac
     else

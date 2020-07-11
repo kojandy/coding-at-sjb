@@ -79,7 +79,7 @@ super + shift + f
     nemo
 
 super + Escape
-    cinnamon-screensaver-command -a
+    LD_LIBRARY_PATH= cinnamon-screensaver-command -a
 
 super + shift + Escape
     pkill cinnamon

@@ -65,7 +65,7 @@ $HOME/coding-at-sjb/repo/fira-code &
 export PATH=$SJB_HOME/usr/bin:$PATH
 export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
 zsh -c 'source ~/.zshrc && exit'
-vim +PlugInstall +qa
+nvim +PlugInstall +qa
 
 pkill -x cinnamon
 gsettings set org.nemo.desktop show-desktop-icons false

@@ -75,4 +75,5 @@ cd $HOME
 setsid bspwm &
 setsid picom &
 
+pkill Hamonize-pcmngr
 pkill -QUIT code

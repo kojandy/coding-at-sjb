@@ -69,8 +69,8 @@ nvim +PlugInstall +qa
 
 pkill -x cinnamon
 gsettings set org.nemo.desktop show-desktop-icons false
-# change background
-# gsettings set org.cinnamon.desktop.background picture-uri "file:///"
+curl -L# 'https://computerbackgroundimages.com/wp-content/uploads/2018/08/Paris-Eiffel-Tower-Night-City-River-Bridge-Desktop-Background.jpg' -o "$SJB_HOME/bg.jpg"
+gsettings set org.cinnamon.desktop.background picture-uri "file://$SJB_HOME/bg.jpg"
 cd $HOME
 setsid bspwm &
 setsid picom &

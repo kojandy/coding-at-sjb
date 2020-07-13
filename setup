@@ -72,6 +72,7 @@ curl -L# 'https://computerbackgroundimages.com/wp-content/uploads/2018/08/Paris-
 gsettings set org.cinnamon.desktop.background picture-uri "file://$SJB_HOME/bg.jpg"
 
 cd $HOME
+. $HOME/.profile
 pkill -x cinnamon
 setsid bspwm &
 setsid picom &

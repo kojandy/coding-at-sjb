@@ -63,7 +63,6 @@ ln -sf $DOTFILES/kitty/kitty.conf $XDG_CONFIG_HOME/kitty/kitty.conf
 $HOME/coding-at-sjb/repo/fira-code &
 
 export PATH=$SJB_HOME/usr/bin:$PATH
-export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
 zsh -c 'source ~/.zshrc && exit'
 nvim +PlugInstall +qa
 

@@ -79,13 +79,13 @@ super + shift + f
     nemo
 
 super + Escape
-    LD_LIBRARY_PATH= cinnamon-screensaver-command -a
+    cinnamon-screensaver-command -a
 
 super + shift + Escape
     pkill cinnamon
 
 {F9,F10}
-    playerctl {play-pause,next}
+    LD_LIBRARY_PATH=/tmp/sjb/usr/lib playerctl {play-pause,next}
 
 {F11,F12}
     amixer --quiet set Master 5%{-,+} unmute

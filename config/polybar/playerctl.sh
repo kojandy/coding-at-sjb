@@ -1,7 +1,7 @@
 #!/bin/bash
-player_status=$(playerctl status 2> /dev/null)
-title=$(playerctl metadata title 2> /dev/null)
-artist=$(playerctl metadata artist 2> /dev/null)
+player_status=$(LD_LIBRARY_PATH=/tmp/sjb/usr/lib playerctl status 2> /dev/null)
+title=$(LD_LIBRARY_PATH=/tmp/sjb/usr/lib playerctl metadata title 2> /dev/null)
+artist=$(LD_LIBRARY_PATH=/tmp/sjb/usr/lib playerctl metadata artist 2> /dev/null)
 
 if [ ! "$artist" = "" ]; then
     title=$artist' - '$title

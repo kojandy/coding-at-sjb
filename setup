@@ -23,7 +23,7 @@ curl -L# 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux6
 
 # install node
 echo Installing node...
-curl -# 'https://nodejs.org/dist/v12.16.3/node-v12.16.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr
+curl -# 'https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr
 
 # map caps lock to control
 echo "remove Lock = Caps_Lock

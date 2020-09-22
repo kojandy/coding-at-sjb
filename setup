@@ -38,8 +38,8 @@ echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
 ln -sf $HOME/다운로드 $HOME/Downloads
 
 # install configs
-git clone https://github.com/kojandy/.dotfiles $DOTFILES
-$DOTFILES/install/zgen
+git clone https://github.com/kojandy/.dotfiles /tmp/sjb/dotfiles
+ln -sf /tmp/sjb/dotfiles $DOTFILES
 ln -sf $DOTFILES/profile $HOME/.profile
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -sf $DOTFILES/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim

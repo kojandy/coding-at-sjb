@@ -2,44 +2,20 @@
 SJB_HOME=/tmp/sjb
 DOTFILES=$HOME/.dotfiles
 XDG_CONFIG_HOME=$HOME/.config
+REPO_URL="https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master"
+NOTIFY_TITLE=coding-at-sjb
 
+# make directories and its symbolic links
 mkdir -p $SJB_HOME/usr
-
-get_pkg() {
-    echo Installing $1...
-    curl -# "https://raw.githubusercontent.com/kojandy/sjb-pkg-repo/master/$1.tar.xz" | tar -xJ -C $SJB_HOME
-}
-
-# install packages from sjb_pkg-repo
-get_pkg zsh
-get_pkg bspwm
-get_pkg polybar
-get_pkg picom
-get_pkg alacritty
-
-# install nvim
-echo Installing nvim...
-curl -L# 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr
-
-# install node
-echo Installing node...
-curl -# 'https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr
-
-# map caps lock to control
-echo "remove Lock = Caps_Lock
-keysym Caps_Lock = Control_L
-add Control = Control_L" > $HOME/.xmodmap
-xmodmap $HOME/.xmodmap
-
-# execute zsh when bash is executed
-echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
-
-# Add symbolic link to downloads directory
+mkdir -p $SJB_HOME/Downloads
+mkdir -p $SJB_HOME/Projects
+ln -sf $SJB_HOME/dotfiles $DOTFILES
+rmdir $HOME/다운로드 && ln -sf $SJB_HOME/Downloads $HOME/다운로드
 ln -sf $HOME/다운로드 $HOME/Downloads
+ln -sf $SJB_HOME/Projects $HOME/Projects
 
 # install configs
 git clone https://github.com/kojandy/.dotfiles /tmp/sjb/dotfiles
-ln -sf /tmp/sjb/dotfiles $DOTFILES
 ln -sf $DOTFILES/profile $HOME/.profile
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -sf $DOTFILES/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim
@@ -56,21 +32,72 @@ mkdir -p $HOME/.config/picom
 ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
 mkdir -p $XDG_CONFIG_HOME/alacritty
 ln -sf $DOTFILES/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
+mkdir -p $XDG_CONFIG_HOME/dunst
+ln -sf $DOTFILES/dunst/dunstrc $XDG_CONFIG_HOME/dunst/dunstrc
 
-$HOME/coding-at-sjb/repo/fira-code &
+# map caps lock to control
+echo "remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L" > $HOME/.xmodmap
+xmodmap $HOME/.xmodmap
 
-export PATH=$SJB_HOME/usr/bin:$PATH
-zsh -c 'source ~/.zshrc && exit'
-nvim +PlugInstall +qa
+# execute zsh when bash is executed
+echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
 
-gsettings set org.nemo.desktop show-desktop-icons false
-gsettings set org.cinnamon.desktop.background picture-uri "file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg"
+# setup desktop environment
+setsid sh -c "
+    curl '$REPO_URL/bspwm.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/polybar.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/dunst.tar.xz' | tar -xJ -C $SJB_HOME &
+    wait
 
-cd $HOME
-. $HOME/.profile
-pkill -x cinnamon
-setsid bspwm &
-setsid picom &
+    gsettings set org.nemo.desktop show-desktop-icons false
+    gsettings set org.cinnamon.desktop.background picture-uri "file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg"
 
-pkill Hamonize-pcmngr
-pkill -QUIT code
+    pkill -x cinnamon
+    pkill Hamonize-pcmngr
+    pkill -QUIT code
+    pkill chromium
+
+    sleep 0.1
+
+    export PATH=$SJB_HOME/usr/bin:$PATH
+    cd $HOME
+    . $HOME/.profile
+    setsid bspwm &
+    setsid picom &
+    LD_LIBRARY_PATH=$SJB_HOME/usr/lib setsid dunst &
+
+    sleep 0.1
+
+    notify-send -u low '$NOTIFY_TITLE' 'Desktop environment setup completed!'
+" &
+
+# install zsh
+setsid sh -c "
+    curl '$REPO_URL/zsh.tar.xz' | tar -xJ -C $SJB_HOME
+    $SJB_HOME/usr/bin/zsh -c 'source ~/.zshrc && exit'
+    notify-send '$NOTIFY_TITLE' 'zsh Installed!'
+" &
+
+# install alacritty
+setsid sh -c "
+    curl '$REPO_URL/alacritty.tar.xz' | tar -xJ -C $SJB_HOME
+    notify-send -u low '$NOTIFY_TITLE' 'alacritty Installed!'
+" &
+
+# install neovim
+setsid sh -c "
+    curl 'https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
+    curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr &
+    wait
+    $SJB_HOME/usr/bin/nvim +PlugInstall +qa
+    notify-send '$NOTIFY_TITLE' 'neovim Installed!'
+" &
+
+# install fira-code
+setsid sh -c "
+    $HOME/coding-at-sjb/repo/fira-code
+    notify-send -u low '$NOTIFY_TITLE' 'fira-code Installed!'
+" &

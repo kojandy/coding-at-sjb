@@ -93,7 +93,7 @@ setsid sh -c "
     curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr &
     wait
     $SJB_HOME/usr/bin/nvim +PlugInstall +qa
-    $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git' +qa
+    $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &
 

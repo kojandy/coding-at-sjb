@@ -62,7 +62,7 @@ setsid sh -c "
     export PATH=$SJB_HOME/usr/bin:$PATH
     cd $HOME
     . $HOME/.profile
-    LD_LIBRARY_PATH=$SJB_HOME/usr/lib nohup setsid spectrwm & >/dev/null 2>&1
+    LD_LIBRARY_PATH=$SJB_HOME/usr/lib nohup setsid spectrwm >/dev/null 2>&1 &
     setsid picom &
     LD_LIBRARY_PATH=$SJB_HOME/usr/lib setsid dunst &
 

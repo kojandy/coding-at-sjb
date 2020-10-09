@@ -23,11 +23,8 @@ ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
 mkdir -p $XDG_CONFIG_HOME/git
 ln -sf $DOTFILES/git/config $XDG_CONFIG_HOME/git/config
 ln -sf $DOTFILES/git/ignore $XDG_CONFIG_HOME/git/ignore
-mkdir -p $XDG_CONFIG_HOME/bspwm
-mkdir -p $XDG_CONFIG_HOME/sxhkd
-ln -sf $HOME/coding-at-sjb/config/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
-ln -sf $HOME/coding-at-sjb/config/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
-ln -sf $HOME/coding-at-sjb/config/polybar $XDG_CONFIG_HOME/polybar
+mkdir -p $XDG_CONFIG_HOME/spectrwm
+ln -sf $HOME/.dotfiles/spectrwm/spectrwm.conf $XDG_CONFIG_HOME/spectrwm/spectrwm.conf
 mkdir -p $HOME/.config/picom
 ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
 mkdir -p $XDG_CONFIG_HOME/alacritty
@@ -46,8 +43,8 @@ echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
 
 # setup desktop environment
 setsid sh -c "
-    curl '$REPO_URL/bspwm.tar.xz' | tar -xJ -C $SJB_HOME &
-    curl '$REPO_URL/polybar.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/spectrwm.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/dmenu.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/dunst.tar.xz' | tar -xJ -C $SJB_HOME &
     wait
@@ -65,7 +62,7 @@ setsid sh -c "
     export PATH=$SJB_HOME/usr/bin:$PATH
     cd $HOME
     . $HOME/.profile
-    setsid bspwm &
+    LD_LIBRARY_PATH=$SJB_HOME/usr/lib setsid spectrwm &
     setsid picom &
     LD_LIBRARY_PATH=$SJB_HOME/usr/lib setsid dunst &
 

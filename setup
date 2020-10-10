@@ -43,6 +43,10 @@ echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
 
 # setup desktop environment
 setsid sh -c "
+    mkdir -p '$HOME/.local/share/fonts'
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
+
     curl '$REPO_URL/spectrwm.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/dmenu.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
@@ -94,12 +98,4 @@ setsid sh -c "
     $SJB_HOME/usr/bin/nvim +PlugInstall +qa
     $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
-" &
-
-# install fira-code
-setsid sh -c "
-    mkdir -p '$HOME/.local/share/fonts'
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
-    notify-send -u low '$NOTIFY_TITLE' 'fira-code Installed!'
 " &

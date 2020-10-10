@@ -60,7 +60,6 @@ setsid sh -c "
     pkill -x cinnamon
     pkill Hamonize-pcmngr
     pkill -QUIT code
-    pkill chromium
 
     sleep 0.1
 

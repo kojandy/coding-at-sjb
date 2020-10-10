@@ -61,11 +61,12 @@ setsid sh -c "
     sleep 0.1
 
     export PATH=$SJB_HOME/usr/bin:$PATH
+    export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
     cd $HOME
     . $HOME/.profile
-    LD_LIBRARY_PATH=$SJB_HOME/usr/lib nohup setsid spectrwm >/dev/null 2>&1 &
+    nohup setsid spectrwm >/dev/null 2>&1 &
     setsid picom &
-    LD_LIBRARY_PATH=$SJB_HOME/usr/lib setsid dunst &
+    setsid dunst &
 
     sleep 0.1
 

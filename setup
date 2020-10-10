@@ -50,7 +50,7 @@ setsid sh -c "
     wait
 
     gsettings set org.nemo.desktop show-desktop-icons false
-    gsettings set org.cinnamon.desktop.background picture-uri "file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg"
+    gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg'
     gsettings set org.cinnamon.desktop.wm.preferences workspace-names \"['','','','']\"
 
     pkill -x cinnamon
@@ -97,6 +97,8 @@ setsid sh -c "
 
 # install fira-code
 setsid sh -c "
-    $HOME/coding-at-sjb/repo/fira-code
+    mkdir -p '$HOME/.local/share/fonts'
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
     notify-send -u low '$NOTIFY_TITLE' 'fira-code Installed!'
 " &

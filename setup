@@ -46,6 +46,7 @@ setsid sh -c "
     mkdir -p '$HOME/.local/share/fonts'
     curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
     curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
+    wait
 
     curl '$REPO_URL/spectrwm.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/dmenu.tar.xz' | tar -xJ -C $SJB_HOME &

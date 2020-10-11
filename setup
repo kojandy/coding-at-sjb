@@ -97,7 +97,9 @@ setsid sh -c "
     curl 'https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
     curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr &
     wait
-    $SJB_HOME/usr/bin/nvim +PlugInstall +qa
-    $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa
+    mkdir -p $HOME/.config/coc/extensions
+    $SJB_HOME/usr/bin/nvim +PlugInstall +qa >/dev/null 2>&1
+    $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa >/dev/null 2>&1
+    timeout 1s $SJB_HOME/usr/bin/nvim >/dev/null 2>&1
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &

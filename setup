@@ -71,8 +71,7 @@ setsid sh -c "
     curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
     wait
     fc-cache -f
-    pkill -HUP spectrwm
-    pkill -QUIT code
+    pkill -HUP spectrwm && pkill -QUIT code
 " &
 
 # install zsh

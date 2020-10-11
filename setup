@@ -40,16 +40,11 @@ xmodmap $HOME/.xmodmap
 
 # setup desktop environment
 setsid sh -c "
-    mkdir -p '$HOME/.local/share/fonts'
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
     curl '$REPO_URL/spectrwm.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/dmenu.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/dunst.tar.xz' | tar -xJ -C $SJB_HOME &
     wait
-
-    fc-cache -f
 
     gsettings set org.nemo.desktop show-desktop-icons false
     gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg'
@@ -70,6 +65,14 @@ setsid sh -c "
     sleep 0.1
 
     notify-send -u low '$NOTIFY_TITLE' 'Desktop environment setup completed!'
+
+    mkdir -p '$HOME/.local/share/fonts'
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
+    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
+    wait
+    fc-cache -f
+    pkill -HUP spectrwm
+    pkill -QUIT code
 " &
 
 # install zsh

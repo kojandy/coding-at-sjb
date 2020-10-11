@@ -59,7 +59,9 @@ setsid sh -c "
     gsettings set org.cinnamon.desktop.wm.preferences workspace-names '@as [\"\",\"\",\"\",\"\"]'
 
     cinnamon --replace &
+    sleep 0.1
     pkill -x cinnamon
+
     pkill Hamonize-pcmngr
     pkill -QUIT code
 

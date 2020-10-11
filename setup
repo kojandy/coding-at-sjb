@@ -79,6 +79,7 @@ setsid sh -c "
 setsid sh -c "
     curl '$REPO_URL/zsh.tar.xz' | tar -xJ -C $SJB_HOME
     $SJB_HOME/usr/bin/zsh -c 'source ~/.zshrc && exit'
+    $HOME/.zgen/romkatv/powerlevel10k-master/gitstatus/install
     echo 'exec $SJB_HOME/usr/bin/zsh' > $HOME/.bashrc
     notify-send '$NOTIFY_TITLE' 'zsh Installed!'
 " &

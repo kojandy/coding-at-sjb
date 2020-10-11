@@ -53,7 +53,6 @@ setsid sh -c "
 
     pkill -x cinnamon
     pkill Hamonize-pcmngr
-    pkill -QUIT code
 
     sleep 0.1
 

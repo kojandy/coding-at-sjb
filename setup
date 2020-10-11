@@ -38,9 +38,6 @@ keysym Caps_Lock = Control_L
 add Control = Control_L" > $HOME/.xmodmap
 xmodmap $HOME/.xmodmap
 
-# execute zsh when bash is executed
-echo "exec $SJB_HOME/usr/bin/zsh" > $HOME/.bashrc
-
 # setup desktop environment
 setsid sh -c "
     mkdir -p '$HOME/.local/share/fonts'
@@ -78,6 +75,7 @@ setsid sh -c "
 setsid sh -c "
     curl '$REPO_URL/zsh.tar.xz' | tar -xJ -C $SJB_HOME
     $SJB_HOME/usr/bin/zsh -c 'source ~/.zshrc && exit'
+    echo 'exec $SJB_HOME/usr/bin/zsh' > $HOME/.bashrc
     notify-send '$NOTIFY_TITLE' 'zsh Installed!'
 " &
 

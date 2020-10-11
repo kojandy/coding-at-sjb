@@ -56,12 +56,8 @@ setsid sh -c "
 
     gsettings set org.nemo.desktop show-desktop-icons false
     gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/linuxmint-tara/rsmith_single_blade_of_grass.jpg'
-    gsettings set org.cinnamon.desktop.wm.preferences num-workspaces 1
 
-    cinnamon --replace &
-    sleep 0.1
     pkill -x cinnamon
-
     pkill Hamonize-pcmngr
     pkill -QUIT code
 

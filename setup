@@ -63,8 +63,6 @@ setsid sh -c "
     setsid dunst &
 
     sleep 0.1
-
-    notify-send -u low '$NOTIFY_TITLE' 'Desktop environment setup completed!'
 " &
 
 # install fonts

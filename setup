@@ -23,14 +23,12 @@ ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
 mkdir -p $XDG_CONFIG_HOME/git
 ln -sf $DOTFILES/git/config $XDG_CONFIG_HOME/git/config
 ln -sf $DOTFILES/git/ignore $XDG_CONFIG_HOME/git/ignore
-mkdir -p $XDG_CONFIG_HOME/spectrwm
-ln -sf $HOME/.dotfiles/spectrwm/spectrwm.conf $XDG_CONFIG_HOME/spectrwm/spectrwm.conf
 mkdir -p $HOME/.config/picom
 ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
 mkdir -p $XDG_CONFIG_HOME/alacritty
 ln -sf $DOTFILES/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
-mkdir -p $XDG_CONFIG_HOME/dunst
-ln -sf $DOTFILES/dunst/dunstrc $XDG_CONFIG_HOME/dunst/dunstrc
+mkdir -p $XDG_CONFIG_HOME/awesome
+ln -sf $HOME/coding-at-sjb/config/awesome/rc.lua $XDG_CONFIG_HOME/awesome/rc.lua
 
 # map caps lock to control
 echo "remove Lock = Caps_Lock
@@ -40,10 +38,8 @@ xmodmap $HOME/.xmodmap
 
 # setup desktop environment
 setsid sh -c "
-    curl '$REPO_URL/spectrwm.tar.xz' | tar -xJ -C $SJB_HOME &
-    curl '$REPO_URL/dmenu.tar.xz' | tar -xJ -C $SJB_HOME &
+    curl '$REPO_URL/awesome.tar.xz' | tar -xJ -C $SJB_HOME &
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
-    curl '$REPO_URL/dunst.tar.xz' | tar -xJ -C $SJB_HOME &
     wait
 
     gsettings set org.nemo.desktop show-desktop-icons false
@@ -58,9 +54,8 @@ setsid sh -c "
     export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
     cd $HOME
     . $HOME/.profile
-    setsid spectrwm >/dev/null 2>&1 &
+    setsid awesome >/dev/null 2>&1 &
     setsid picom &
-    setsid dunst &
 
     sleep 0.1
 " &
@@ -72,7 +67,6 @@ setsid sh -c "
     curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
     wait
     fc-cache -f
-    pkill -HUP spectrwm && pkill -QUIT code
 " &
 
 # install zsh

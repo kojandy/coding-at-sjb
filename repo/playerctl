@@ -1,2 +1,2 @@
 #!/bin/sh
-curl -L# 'https://github.com/altdesktop/playerctl/releases/download/v2.1.1/playerctl-2.1.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb
+curl -L# 'https://github.com/altdesktop/playerctl/releases/download/v2.2.1/playerctl-2.2.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb

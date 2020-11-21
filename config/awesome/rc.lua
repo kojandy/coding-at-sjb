@@ -9,7 +9,7 @@ local naughty = require("naughty")
 
 beautiful.init({
     font = "Noto Sans CJK KR Bold 10",
-    border_normal = "#000000",
+    border_normal = "#ffffff",
     border_focus = "#ffffff",
     border_width = 1,
     useless_gap = 10,
@@ -218,6 +218,10 @@ client.connect_signal("manage", function (c)
             end
         end
     end
+
+    c.shape = function(cr, w, h)
+        gears.shape.rounded_rect(cr, w, h, 5)
+    end
 end)
 
 client.connect_signal("request::titlebars", function(c)
@@ -232,7 +236,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 25}) : setup {
+    awful.titlebar(c, {size = 24}) : setup {
         {
             align = "center",
             widget = awful.titlebar.widget.titlewidget(c),

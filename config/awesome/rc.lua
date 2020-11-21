@@ -10,7 +10,6 @@ local naughty = require("naughty")
 beautiful.init({
     font = "Noto Sans CJK KR Bold 10",
     border_normal = "#ffffff",
-    border_focus = "#ffffff",
     border_width = 1,
     useless_gap = 10,
     taglist_bg_focus = "#187bcd",
@@ -183,6 +182,9 @@ awful.rules.rules = {
                     end
                     awful.mouse.client.move(c)
                 end),
+                awful.button({modkey}, 2, function(c)
+                    c:kill()
+                end),
                 awful.button({modkey}, 3, function(c)
                     c:emit_signal("request::activate", "mouse_click", {raise = true})
                     awful.mouse.client.resize(c)
@@ -230,6 +232,9 @@ client.connect_signal("request::titlebars", function(c)
             c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.move(c)
         end),
+        awful.button({ }, 2, function()
+            c:kill()
+        end),
         awful.button({ }, 3, function()
             c:emit_signal("request::activate", "titlebar", {raise = true})
             awful.mouse.client.resize(c)
@@ -276,6 +281,3 @@ tag.connect_signal("property::layout", function(t)
         end
     end
 end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

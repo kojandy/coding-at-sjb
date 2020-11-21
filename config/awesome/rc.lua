@@ -14,6 +14,14 @@ beautiful.init({
     useless_gap = 10,
     taglist_bg_focus = "#187bcd",
     taglist_bg_urgent = "#c62121",
+    tasklist_align = "center",
+    tasklist_shape = function(cr, w, h) gears.shape.rounded_rect(cr, w, h, 5) end,
+    tasklist_spacing = 5,
+    tasklist_disable_icon = true,
+    tasklist_bg_normal = "#000000",
+    tasklist_bg_focus = "#187bcd",
+    tasklist_bg_urgent = "#c62121",
+    tasklist_bg_minimize = "#ffffff00",
     wibar_bg = "#ffffff00",
     wibar_height = 20,
     titlebar_bg = "#000000",
@@ -38,6 +46,13 @@ awful.screen.connect_for_each_screen(function(s)
             filter  = awful.widget.taglist.filter.noempty,
         },
         wibox.widget.textclock("%a, %b %d   %R"),
+    }
+    awful.wibar({ position = "top", screen = s }):setup {
+        layout = wibox.layout.flex.horizontal,
+        awful.widget.tasklist {
+            screen  = s,
+            filter  = awful.widget.tasklist.filter.currenttags,
+        },
     }
 end)
 

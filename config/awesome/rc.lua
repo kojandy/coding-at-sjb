@@ -46,7 +46,8 @@ awful.screen.connect_for_each_screen(function(s)
         },
         wibox.widget.textclock("%a, %b %d   %R"),
     }
-    awful.wibar({ position = "top", screen = s }):setup {
+    s.taskbar = awful.wibar({ position = "top", screen = s, visible = false })
+    s.taskbar:setup {
         layout = wibox.layout.flex.horizontal,
         awful.widget.tasklist {
             screen  = s,
@@ -95,6 +96,12 @@ globalkeys = gears.table.join(
         local c = awful.client.restore()
         if c then
             c:emit_signal("request::activate", "key.unminimize", {raise = true})
+        end
+    end),
+
+    awful.key(Mod, "slash", function()
+        for s in screen do
+            s.taskbar.visible = not s.taskbar.visible
         end
     end),
 

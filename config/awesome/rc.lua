@@ -100,9 +100,8 @@ globalkeys = gears.table.join(
     end),
 
     awful.key(Mod, "slash", function()
-        for s in screen do
-            s.taskbar.visible = not s.taskbar.visible
-        end
+        local s = awful.screen.focused()
+        s.taskbar.visible = not s.taskbar.visible
     end),
 
     awful.key(Mod, "i", function() awful.util.spawn("playerctl previous") end),
@@ -191,6 +190,7 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
+            floating = false,
             keys = clientkeys,
             buttons = gears.table.join(
                 awful.button({}, 1, function(c)

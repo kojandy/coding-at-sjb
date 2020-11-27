@@ -190,7 +190,6 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            floating = false,
             keys = clientkeys,
             buttons = gears.table.join(
                 awful.button({}, 1, function(c)

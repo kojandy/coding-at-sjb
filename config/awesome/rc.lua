@@ -104,13 +104,13 @@ globalkeys = gears.table.join(
         s.taskbar.visible = not s.taskbar.visible
     end),
 
-    awful.key(Mod, "i", function() awful.util.spawn("playerctl previous") end),
-    awful.key(Mod, "o", function() awful.util.spawn("playerctl play-pause") end),
-    awful.key(Mod, "p", function() awful.util.spawn("playerctl next") end),
+    awful.key(Mod, "i", function() awful.util.spawn("amixer --quiet set Master 5%- unmute") end),
+    awful.key(Mod, "o", function() awful.util.spawn("amixer --quiet set Master toggle") end),
+    awful.key(Mod, "p", function() awful.util.spawn("amixer --quiet set Master 5%+ unmute") end),
 
-    awful.key(Mod_S, "i", function() awful.util.spawn("amixer --quiet set Master 5%- unmute") end),
-    awful.key(Mod_S, "o", function() awful.util.spawn("amixer --quiet set Master toggle") end),
-    awful.key(Mod_S, "p", function() awful.util.spawn("amixer --quiet set Master 5%+ unmute") end)
+    awful.key(Mod_S, "i", function() awful.util.spawn("playerctl previous") end),
+    awful.key(Mod_S, "o", function() awful.util.spawn("playerctl play-pause") end),
+    awful.key(Mod_S, "p", function() awful.util.spawn("playerctl next") end)
 )
 
 clientkeys = gears.table.join(

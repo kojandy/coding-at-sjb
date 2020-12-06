@@ -34,7 +34,7 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "web", "dev", "chat", "doc", "media", "6", "7", "8", "misc" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",
@@ -54,7 +54,6 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 
-modkey = "Mod4"
 Mod = {"Mod4"}
 Mod_S = {"Mod4", "Shift"}
 
@@ -141,40 +140,36 @@ clientkeys = gears.table.join(
 
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
-        awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
-                  end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
-                      end
-                  end),
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:move_to_tag(tag)
-                          end
-                     end
-                  end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:toggle_tag(tag)
-                          end
-                      end
-                  end)
+        awful.key(Mod, "#" .. i + 9, function()
+            local screen = awful.screen.focused()
+            local tag = screen.tags[i]
+            if tag then
+                tag:view_only()
+            end
+        end),
+        awful.key(Mod_S, "#" .. i + 9, function()
+            if client.focus then
+                local tag = client.focus.screen.tags[i]
+                if tag then
+                    client.focus:move_to_tag(tag)
+                end
+            end
+        end),
+        awful.key({"Mod4", "Control"}, "#" .. i + 9, function()
+            local screen = awful.screen.focused()
+            local tag = screen.tags[i]
+            if tag then
+                awful.tag.viewtoggle(tag)
+            end
+        end),
+        awful.key({"Mod4", "Control", "Shift"}, "#" .. i + 9, function()
+            if client.focus then
+                local tag = client.focus.screen.tags[i]
+                if tag then
+                    client.focus:toggle_tag(tag)
+                end
+            end
+        end)
     )
 end
 
@@ -193,17 +188,17 @@ awful.rules.rules = {
                 awful.button({}, 1, function(c)
                     c:emit_signal("request::activate", "mouse_click", {raise = true})
                 end),
-                awful.button({modkey}, 1, function(c)
+                awful.button(Mod, 1, function(c)
                     c:emit_signal("request::activate", "mouse_click", {raise = true})
                     if c.first_tag.layout.name ~= "floating" then
                         c.floating = true
                     end
                     awful.mouse.client.move(c)
                 end),
-                awful.button({modkey}, 2, function(c)
+                awful.button(Mod, 2, function(c)
                     c:kill()
                 end),
-                awful.button({modkey}, 3, function(c)
+                awful.button(Mod, 3, function(c)
                     c:emit_signal("request::activate", "mouse_click", {raise = true})
                     awful.mouse.client.resize(c)
                 end)

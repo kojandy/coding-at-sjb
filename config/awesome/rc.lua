@@ -27,8 +27,6 @@ beautiful.init({
 })
 
 terminal = os.getenv("TERMINAL")
--- browser = os.getenv("BROWSER")
-browser = "chromium-browser"
 
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -86,8 +84,8 @@ globalkeys = gears.table.join(
     end),
 
     awful.key(Mod, "Return", function() awful.spawn(terminal) end),
-    awful.key(Mod_S, "w", function() awful.spawn(browser) end),
-    awful.key(Mod_S, "f", function() awful.spawn("xdg-open .") end),
+    awful.key(Mod_S, "w", function() awful.spawn("chromium-browser") end),
+    awful.key(Mod_S, "f", function() awful.spawn("nemo") end),
 
     awful.key(Mod_S, "Escape", awesome.restart),
     awful.key(Mod, "grave", function() awful.layout.inc(1) end),
@@ -104,13 +102,13 @@ globalkeys = gears.table.join(
         s.taskbar.visible = not s.taskbar.visible
     end),
 
-    awful.key(Mod, "i", function() awful.util.spawn("amixer --quiet set Master 5%- unmute") end),
-    awful.key(Mod, "o", function() awful.util.spawn("amixer --quiet set Master toggle") end),
-    awful.key(Mod, "p", function() awful.util.spawn("amixer --quiet set Master 5%+ unmute") end),
+    awful.key(Mod, "i", function() awful.spawn("amixer --quiet set Master 5%- unmute", false) end),
+    awful.key(Mod, "o", function() awful.spawn("amixer --quiet set Master toggle", false) end),
+    awful.key(Mod, "p", function() awful.spawn("amixer --quiet set Master 5%+ unmute", false) end),
 
-    awful.key(Mod_S, "i", function() awful.util.spawn("playerctl previous") end),
-    awful.key(Mod_S, "o", function() awful.util.spawn("playerctl play-pause") end),
-    awful.key(Mod_S, "p", function() awful.util.spawn("playerctl next") end)
+    awful.key(Mod_S, "i", function() awful.spawn("playerctl previous", false) end),
+    awful.key(Mod_S, "o", function() awful.spawn("playerctl play-pause", false) end),
+    awful.key(Mod_S, "p", function() awful.spawn("playerctl next", false) end)
 )
 
 clientkeys = gears.table.join(

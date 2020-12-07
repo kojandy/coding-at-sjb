@@ -34,7 +34,7 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "web", "dev", "doc", "4", "5", "6", "7", "media", "chat" }, s, awful.layout.layouts[1])
+    awful.tag({ "web", "dev", "doc", "4", "5", "6", "7", "misc", "chat", "media" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",
@@ -137,8 +137,7 @@ clientkeys = gears.table.join(
     awful.key(Mod, "semicolon", function(c) c:swap(awful.client.getmaster()) end),
     awful.key(Mod, "BackSpace", function(c) c.minimized = true end)
 )
-
-for i = 1, 9 do
+for i = 1, 10 do
     globalkeys = gears.table.join(globalkeys,
         awful.key(Mod, "#" .. i + 9, function()
             local screen = awful.screen.focused()

@@ -86,10 +86,14 @@ setsid sh -c "
 
 # install neovim
 setsid sh -c "
-    curl 'https://nodejs.org/dist/v12.18.3/node-v12.18.3-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
-    curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz' | tar -xz --strip-components=1 -C $SJB_HOME/usr &
+    curl 'https://nodejs.org/dist/v15.3.0/node-v15.3.0-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
+    curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage' -o $SJB_HOME/usr/bin/nvim
     wait
     mkdir -p $HOME/.config/coc/extensions
+    chmod +x $SJB_HOME/usr/bin/nvim
+    $SJB_HOME/usr/bin/nvim --appimage-extract
+    mv $SJB_HOME/usr/bin/squashfs-root $SJB_HOME/usr/bin/nvim-root
+    ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim +PlugInstall +qa >/dev/null 2>&1
     $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa >/dev/null 2>&1
     timeout 1s $SJB_HOME/usr/bin/nvim >/dev/null 2>&1

@@ -34,7 +34,7 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "web", "dev", "chat", "doc", "media", "6", "7", "8", "misc" }, s, awful.layout.layouts[1])
+    awful.tag({ "web", "dev", "doc", "4", "5", "6", "7", "media", "chat" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",

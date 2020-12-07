@@ -92,7 +92,7 @@ setsid sh -c "
     mkdir -p $HOME/.config/coc/extensions
     chmod +x $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim --appimage-extract
-    mv $SJB_HOME/usr/bin/squashfs-root $SJB_HOME/usr/bin/nvim-root
+    mv squashfs-root $SJB_HOME/usr/bin/nvim-root
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim +PlugInstall +qa >/dev/null 2>&1
     $SJB_HOME/usr/bin/nvim '+CocInstall -sync coc-actions coc-git coc-yank' +qa >/dev/null 2>&1

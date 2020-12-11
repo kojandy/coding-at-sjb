@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "export PATH=/tmp/sjb/junest/bin:\$PATH
-export JUNEST_HOME=/tmp/sjb/junest/home" > $HOME/.bashrc
+export JUNEST_HOME=/tmp/sjb/junest/home" >> $HOME/.zshrc.local
 git clone https://github.com/fsquillace/junest /tmp/sjb/junest
 mkdir -p /tmp/sjb/junest/home
 wget 'http://momo.kojandy.com/home.tar.xz' -O /tmp/sjb/junest/home.tar.xz

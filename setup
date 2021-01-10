@@ -55,7 +55,6 @@ setsid sh -c "
     cd $HOME
     . $HOME/.profile
     setsid awesome >/dev/null 2>&1 &
-    setsid picom &
 
     sleep 0.1
 " &

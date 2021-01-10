@@ -293,3 +293,5 @@ tag.connect_signal("property::layout", function(t)
         end
     end
 end)
+
+awful.spawn("picom -b", false)

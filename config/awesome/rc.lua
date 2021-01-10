@@ -75,7 +75,9 @@ globalkeys = gears.table.join(
         end
     end),
     awful.key(Mod, "u", awful.client.urgent.jumpto),
-    awful.key(Mod, "Tab", function()
+
+    awful.key(Mod, "Tab", function() awful.tag.history.restore(awful.screen.focused(), "previous") end),
+    awful.key({"Mod1"}, "Tab", function()
         awful.client.focus.history.previous()
         if client.focus then
             client.focus:raise()

@@ -8,7 +8,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 
 beautiful.init({
-    font = "Noto Sans CJK KR Bold 10",
+    font = "Inter Bold 10",
     border_normal = "#ffffff",
     border_width = 1,
     useless_gap = 10,
@@ -34,7 +34,7 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "web", "dev", "doc", "4", "5", "6", "7", "misc", "chat", "media" }, s, awful.layout.layouts[1])
+    awful.tag({ "web", "dev", "doc", "remote", "5", "6", "7", "misc", "chat", "media" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",
@@ -42,7 +42,7 @@ awful.screen.connect_for_each_screen(function(s)
             screen  = s,
             filter  = awful.widget.taglist.filter.noempty,
         },
-        wibox.widget.textclock("%a, %b %d   %R"),
+        wibox.widget.textclock("%a, %b %-d   %R"),
     }
     s.taskbar = awful.wibar({ position = "top", screen = s, visible = false })
     s.taskbar:setup {

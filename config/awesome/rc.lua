@@ -12,7 +12,7 @@ beautiful.init({
     border_normal = "#ffffff",
     border_width = 1,
     useless_gap = 10,
-    taglist_font = "Material Design Icons 12",
+    taglist_font = "Material Design Icons 10",
     taglist_bg_focus = "#187bcd",
     taglist_bg_urgent = "#c62121",
     tasklist_align = "center",

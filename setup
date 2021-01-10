@@ -63,9 +63,7 @@ setsid sh -c "
 # install fonts
 setsid sh -c "
     mkdir -p '$HOME/.local/share/fonts'
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Regular.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Regular.ttf' &
-    curl -L 'https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-Bold.ttf?raw=true' -o '$HOME/.local/share/fonts/FiraCode-Bold.ttf' &
-    wait
+    curl -L '$REPO_URL/fonts.tar.xz' | tar -xJ -C '$HOME/.local/share/fonts'
     fc-cache -f
 " &
 

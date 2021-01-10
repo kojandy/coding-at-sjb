@@ -12,6 +12,7 @@ beautiful.init({
     border_normal = "#ffffff",
     border_width = 1,
     useless_gap = 10,
+    taglist_font = "Material Design Icons 12",
     taglist_bg_focus = "#187bcd",
     taglist_bg_urgent = "#c62121",
     tasklist_align = "center",
@@ -34,7 +35,8 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "web", "dev", "doc", "remote", "5", "6", "7", "misc", "chat", "media" }, s, awful.layout.layouts[1])
+    -- web dev doc remote game 6 7 misc chat media
+    awful.tag({ "\u{F059F}", "\u{F07B7}", "\u{F09A8}", "\u{F0318}", "\u{F1362}", "6", "7", "\u{F01D8}", "\u{F0B79}", "\u{F075A}" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",

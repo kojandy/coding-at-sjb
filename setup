@@ -26,7 +26,7 @@ ln -sf $DOTFILES/git/ignore $XDG_CONFIG_HOME/git/ignore
 mkdir -p $HOME/.config/picom
 ln -sf $HOME/.dotfiles/picom/picom.conf $HOME/.config/picom/picom.conf
 mkdir -p $XDG_CONFIG_HOME/alacritty
-ln -sf $DOTFILES/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
+ln -sf $HOME/coding-at-sjb/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
 mkdir -p $XDG_CONFIG_HOME/awesome
 ln -sf $HOME/coding-at-sjb/config/awesome/rc.lua $XDG_CONFIG_HOME/awesome/rc.lua
 

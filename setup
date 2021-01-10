@@ -29,6 +29,8 @@ mkdir -p $XDG_CONFIG_HOME/alacritty
 ln -sf $HOME/coding-at-sjb/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
 mkdir -p $XDG_CONFIG_HOME/awesome
 ln -sf $HOME/coding-at-sjb/config/awesome/rc.lua $XDG_CONFIG_HOME/awesome/rc.lua
+mkdir -p $HOME/.config/lf
+ln -sf $HOME/.dotfiles/lf/lfrc $HOME/.config/lf/lfrc
 
 # map caps lock to control
 echo "remove Lock = Caps_Lock

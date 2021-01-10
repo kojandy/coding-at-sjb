@@ -106,7 +106,7 @@ globalkeys = gears.table.join(
     end),
 
     awful.key(Mod, "i", function() awful.spawn("amixer --quiet set Master 5%- unmute", false) end),
-    awful.key(Mod, "o", function() awful.spawn("amixer --quiet set Master toggle", false) end),
+    awful.key(Mod, "o", function() awful.spawn("amixer --quiet -D pulse set Master toggle", false) end),
     awful.key(Mod, "p", function() awful.spawn("amixer --quiet set Master 5%+ unmute", false) end),
 
     awful.key(Mod_S, "i", function() awful.spawn("playerctl previous", false) end),

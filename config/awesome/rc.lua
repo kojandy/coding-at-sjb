@@ -45,6 +45,13 @@ awful.screen.connect_for_each_screen(function(s)
             filter  = awful.widget.taglist.filter.noempty,
         },
         wibox.widget.textclock("%a, %b %-d   %R"),
+        {
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.textbox("\u{F057F}\u{F0580}\u{F057E}"),
+            wibox.widget.textbox("  "),
+            wibox.widget.textbox("\u{F0079}\u{F007F}"),
+            wibox.widget.textbox(" "),
+        }
     }
     s.taskbar = awful.wibar({ position = "top", screen = s, visible = false })
     s.taskbar:setup {

@@ -47,7 +47,7 @@ setsid sh -c "
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
     wait
 
-    git clone -b awesome-4v3-stable https://github.com/mut-ex/awesome-wm-nice /tmp/sjb/awesome/lib/nice
+    git clone https://github.com/kojandy/awesome-wm-nice /tmp/sjb/awesome/lib/nice
 
     gsettings set org.nemo.desktop show-desktop-icons false
     gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/linuxmint-tara/evablue_jacques_cartier.jpg'

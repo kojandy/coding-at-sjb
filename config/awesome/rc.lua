@@ -29,11 +29,10 @@ beautiful.init({
 
 local nice = require("nice")
 nice {
-    titlebar_height = 30,
-    titlebar_radius = 3,
+    titlebar_height = 26,
+    titlebar_radius = 6,
     titlebar_font = "Inter Bold 10",
-    titlebar_padding_left = 10,
-    button_size = 14,
+    button_size = 13,
     button_margin_horizontal = 3,
     tooltips_enabled = false,
 }

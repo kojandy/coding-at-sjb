@@ -38,6 +38,9 @@ keysym Caps_Lock = Control_L
 add Control = Control_L" > $HOME/.xmodmap
 xmodmap $HOME/.xmodmap
 
+# unmute everything
+amixer set Front unmute && amixer set Headphone 100% unmute && amixer set Master 45% unmute
+
 # setup desktop environment
 setsid sh -c "
     curl '$REPO_URL/awesome.tar.xz' | tar -xJ -C $SJB_HOME &

@@ -42,6 +42,9 @@ awful.layout.layouts = {
 }
 
 awful.screen.connect_for_each_screen(function(s)
+    s.systray = wibox.widget.systray()
+    s.systray.visible = false
+
     -- web dev doc remote game 6 7 misc chat media
     awful.tag({ "\u{F059F}", "\u{F07B7}", "\u{F09A8}", "\u{F0318}", "\u{F1362}", "6", "7", "\u{F01D8}", "\u{F0B79}", "\u{F075A}" }, s, awful.layout.layouts[1])
     awful.wibar({ position = "top", screen = s }):setup {
@@ -58,6 +61,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.textbox("  "),
             wibox.widget.textbox("\u{F0079}\u{F007F}"),
             wibox.widget.textbox(" "),
+            s.systray,
         }
     }
     s.taskbar = awful.wibar({ position = "top", screen = s, visible = false })
@@ -117,6 +121,10 @@ globalkeys = gears.table.join(
     awful.key(Mod, "slash", function()
         local s = awful.screen.focused()
         s.taskbar.visible = not s.taskbar.visible
+    end),
+    awful.key(Mod, "equal", function()
+        local s = awful.screen.focused()
+        s.systray.visible = not s.systray.visible
     end),
 
     awful.key(Mod, "i", function() awful.spawn("amixer --quiet set Master 5%- unmute", false) end),

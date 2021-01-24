@@ -9,8 +9,6 @@ local naughty = require("naughty")
 
 beautiful.init({
     font = "Inter Bold 10",
-    -- border_normal = "#ffffff",
-    -- border_width = 1,
     useless_gap = 10,
     taglist_font = "Material Design Icons 10",
     taglist_bg_focus = "#187bcd",
@@ -24,7 +22,6 @@ beautiful.init({
     tasklist_bg_minimize = "#ffffff00",
     wibar_bg = "#ffffff00",
     wibar_height = 20,
-    -- titlebar_bg = "#000000",
 })
 
 local nice = require("nice")
@@ -254,66 +251,10 @@ client.connect_signal("manage", function (c)
             end
         end
     end
-
---     c.shape = function(cr, w, h)
---         gears.shape.rounded_rect(cr, w, h, 5)
---     end
 end)
-
--- client.connect_signal("request::titlebars", function(c)
---     local buttons = gears.table.join(
---         awful.button({ }, 1, function()
---             c:emit_signal("request::activate", "titlebar", {raise = true})
---             awful.mouse.client.move(c)
---         end),
---         awful.button({ }, 2, function()
---             c:kill()
---         end),
---         awful.button({ }, 3, function()
---             c:emit_signal("request::activate", "titlebar", {raise = true})
---             awful.mouse.client.resize(c)
---         end)
---     )
-
---     awful.titlebar(c, {size = 24}) : setup {
---         {
---             align = "center",
---             widget = awful.titlebar.widget.titlewidget(c),
---         },
---         layout = wibox.layout.flex.horizontal,
---         buttons = buttons,
---     }
--- end)
 
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
-
--- client.connect_signal("manage", function(c)
---     if c.floating or c.first_tag.layout.name == "floating" then
---         awful.titlebar.show(c)
---     else
---         awful.titlebar.hide(c)
---     end
--- end)
-
--- client.connect_signal("property::floating", function(c)
---     if c.floating and not c.requests_no_titlebar then
---         awful.titlebar.show(c)
---     else
---         awful.titlebar.hide(c)
---     end
--- end)
-
--- tag.connect_signal("property::layout", function(t)
---     local clients = t:clients()
---     for k,c in pairs(clients) do
---         if c.floating or c.first_tag.layout.name == "floating" then
---             awful.titlebar.show(c)
---         else
---             awful.titlebar.hide(c)
---         end
---     end
--- end)
 
 awful.spawn("picom -b", false)

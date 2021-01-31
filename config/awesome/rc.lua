@@ -77,6 +77,13 @@ end)
 Mod = {"Mod4"}
 Mod_S = {"Mod4", "Shift"}
 
+local function autofocus_tiled(c)
+    if not c.floating and c.first_tag.layout.name ~= "floating" then
+        local next_idx = awful.client.next(1, c) == awful.client.getmaster() and -1 or 1
+        awful.client.focus.history.add(awful.client.next(next_idx, c))
+    end
+end
+
 globalkeys = gears.table.join(
     awful.key(Mod, "j", function() awful.client.focus.byidx(1) end),
     awful.key(Mod, "k", function() awful.client.focus.byidx(-1) end),
@@ -142,13 +149,7 @@ globalkeys = gears.table.join(
 
 clientkeys = gears.table.join(
     awful.key(Mod, "q", function(c)
-        if not c.floating and c.first_tag.layout.name ~= "floating" then
-            if awful.client.next(1) == awful.client.getmaster() then
-                awful.client.focus.byidx(-1)
-            else
-                awful.client.focus.byidx(1)
-            end
-        end
+        autofocus_tiled(c)
         c:kill()
     end),
     awful.key(Mod, "s", awful.client.floating.toggle),
@@ -165,7 +166,10 @@ clientkeys = gears.table.join(
         c:raise()
     end),
     awful.key(Mod, "semicolon", function(c) c:swap(awful.client.getmaster()) end),
-    awful.key(Mod, "BackSpace", function(c) c.minimized = true end)
+    awful.key(Mod, "BackSpace", function(c)
+        autofocus_tiled(c)
+        c.minimized = true
+    end)
 )
 for i = 1, 10 do
     globalkeys = gears.table.join(globalkeys,
@@ -180,6 +184,7 @@ for i = 1, 10 do
             if client.focus then
                 local tag = client.focus.screen.tags[i]
                 if tag then
+                    autofocus_tiled(client.focus)
                     client.focus:move_to_tag(tag)
                 end
             end

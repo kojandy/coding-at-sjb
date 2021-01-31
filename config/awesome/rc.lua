@@ -94,13 +94,13 @@ globalkeys = gears.table.join(
     awful.key(Mod_S, "h", function() awful.tag.incmwfact(-0.05) end),
 
     awful.key(Mod, "h", function()
-        client.focus = awful.client.getmaster()
+        awful.client.focus.bydirection("left")
         if client.focus then
             client.focus:raise()
         end
     end),
     awful.key(Mod, "l", function()
-        awful.client.focus.history.previous()
+        awful.client.focus.bydirection("right")
         if client.focus then
             client.focus:raise()
         end

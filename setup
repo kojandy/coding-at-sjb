@@ -47,7 +47,7 @@ setsid sh -c "
     curl '$REPO_URL/picom.tar.xz' | tar -xJ -C $SJB_HOME &
     wait
 
-    git clone https://github.com/kojandy/awesome-wm-nice /tmp/sjb/awesome/lib/nice
+    git clone https://github.com/kojandy/awesome-wm-nice $SJB_HOME/awesome/lib/nice
 
     gsettings set org.nemo.desktop show-desktop-icons false
     gsettings set org.cinnamon.desktop.background picture-uri 'file:///usr/share/backgrounds/linuxmint-tara/evablue_jacques_cartier.jpg'
@@ -61,9 +61,14 @@ setsid sh -c "
     export LD_LIBRARY_PATH=$SJB_HOME/usr/lib
     cd $HOME
     . $HOME/.profile
-    setsid awesome >/dev/null 2>&1 &
 
-    sleep 0.1
+    until awesome
+    do
+        cd $HOME/coding-at-sjb
+        git reset --hard
+        cd $HOME
+        sleep 1
+    done
 " &
 
 # install fonts

@@ -99,11 +99,17 @@ setsid sh -c "
     curl 'https://nodejs.org/dist/v15.8.0/node-v15.8.0-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
     curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage' -o $SJB_HOME/usr/bin/nvim
     wait
-    mkdir -p $HOME/.config/coc/extensions
     chmod +x $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim --appimage-extract
     mv squashfs-root $SJB_HOME/usr/bin/nvim-root
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim +PlugInstall +qa >/dev/null 2>&1
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
+" &
+
+# install etcs
+setsid sh -c "
+    curl -L 'https://github.com/altdesktop/playerctl/releases/download/v2.3.1/playerctl-2.3.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb &
+    $DOTFILES/install/lf &
+    $DOTFILES/install/rg &
 " &

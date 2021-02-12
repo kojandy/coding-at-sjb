@@ -9,9 +9,9 @@ NOTIFY_TITLE=coding-at-sjb
 mkdir -p $SJB_HOME/usr
 mkdir -p $SJB_HOME/Downloads
 mkdir -p $SJB_HOME/Projects
+sed -i 's/다운로드/Downloads/' $XDG_CONFIG_HOME/user-dirs.dirs
 ln -sf $SJB_HOME/dotfiles $DOTFILES
-rmdir $HOME/다운로드 && ln -sf $SJB_HOME/Downloads $HOME/다운로드
-ln -sf $HOME/다운로드 $HOME/Downloads
+ln -sf $SJB_HOME/Downloads $HOME/Downloads
 ln -sf $SJB_HOME/Projects $HOME/Projects
 
 # install configs

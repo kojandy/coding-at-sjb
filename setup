@@ -112,4 +112,5 @@ setsid sh -c "
     curl -L 'https://github.com/altdesktop/playerctl/releases/download/v2.3.1/playerctl-2.3.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb &
     $DOTFILES/install/lf &
     $DOTFILES/install/rg &
+    wait
 " &

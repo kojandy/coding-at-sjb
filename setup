@@ -13,6 +13,7 @@ sed -i 's/다운로드/Downloads/' $XDG_CONFIG_HOME/user-dirs.dirs
 ln -sf $SJB_HOME/dotfiles $DOTFILES
 ln -sf $SJB_HOME/Downloads $HOME/Downloads
 ln -sf $SJB_HOME/Projects $HOME/Projects
+rm -rf $HOME/공개 $HOME/문서 $HOME/사진 $HOME/음악 $HOME/비디오 $HOME/템플릿 $HOME/다운로드
 
 # install configs
 git clone https://github.com/kojandy/.dotfiles /tmp/sjb/dotfiles

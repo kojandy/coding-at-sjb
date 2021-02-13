@@ -104,13 +104,14 @@ setsid sh -c "
     $SJB_HOME/usr/bin/nvim --appimage-extract
     mv squashfs-root $SJB_HOME/usr/bin/nvim-root
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
-    $SJB_HOME/usr/bin/nvim +PlugInstall +qa >/dev/null 2>&1
+    $SJB_HOME/usr/bin/nvim +PlugInstall +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &
 
 # install etcs
 setsid sh -c "
     curl -L 'https://github.com/altdesktop/playerctl/releases/download/v2.3.1/playerctl-2.3.1_amd64.deb' | dpkg -x /dev/stdin /tmp/sjb &
+    export DOTFILES=$DOTFILES
     $DOTFILES/install/lf &
     $DOTFILES/install/rg &
     wait

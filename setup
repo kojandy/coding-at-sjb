@@ -104,7 +104,6 @@ setsid sh -c "
     $SJB_HOME/usr/bin/nvim --appimage-extract
     mv squashfs-root $SJB_HOME/usr/bin/nvim-root
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
-    $SJB_HOME/usr/bin/nvim +PlugInstall +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &
 

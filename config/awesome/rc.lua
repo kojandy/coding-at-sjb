@@ -90,17 +90,13 @@ globalkeys = gears.table.join(
     awful.key(Mod_S, "j", function() awful.client.swap.byidx(1) end),
     awful.key(Mod_S, "k", function() awful.client.swap.byidx(-1) end),
 
-    awful.key(Mod_S, "l", function() awful.tag.incmwfact(0.05) end),
-    awful.key(Mod_S, "h", function() awful.tag.incmwfact(-0.05) end),
+    awful.key(Mod, "h", function() awful.tag.incmwfact(-0.05) end),
+    awful.key(Mod, "l", function() awful.tag.incmwfact(0.05) end),
+    awful.key(Mod_S, "h", function() awful.tag.incnmaster(1, nil, true) end),
+    awful.key(Mod_S, "l", function() awful.tag.incnmaster(-1, nil, true) end),
 
-    awful.key(Mod, "h", function()
+    awful.key(Mod, "m", function()
         client.focus = awful.client.getmaster()
-        if client.focus then
-            client.focus:raise()
-        end
-    end),
-    awful.key(Mod, "l", function()
-        awful.client.focus.history.previous()
         if client.focus then
             client.focus:raise()
         end

@@ -18,9 +18,10 @@ rm -rf $HOME/공개 $HOME/문서 $HOME/사진 $HOME/음악 $HOME/비디오 $HOME
 # install configs
 git clone https://github.com/kojandy/.dotfiles /tmp/sjb/dotfiles
 ln -sf $DOTFILES/profile $HOME/.profile
-mkdir -p $XDG_CONFIG_HOME/nvim
+mkdir -p $XDG_CONFIG_HOME/nvim/plugin
 ln -sf $DOTFILES/nvim/init.vim $XDG_CONFIG_HOME/nvim/init.vim
 ln -sf $DOTFILES/nvim/lua $XDG_CONFIG_HOME/nvim/lua
+ln -sf $DOTFILES/nvim/plugin/monkey_terminal.vim $XDG_CONFIG_HOME/nvim/plugin/monkey_terminal.vim
 ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
 mkdir -p $XDG_CONFIG_HOME/git
 ln -sf $DOTFILES/git/config $XDG_CONFIG_HOME/git/config

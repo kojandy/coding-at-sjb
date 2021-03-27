@@ -104,6 +104,10 @@ setsid sh -c "
     $SJB_HOME/usr/bin/nvim --appimage-extract
     mv squashfs-root $SJB_HOME/usr/bin/nvim-root
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
+    $SJB_HOME/usr/bin/nvim --headless
+    $SJB_HOME/usr/bin/nvim --headless +'call fzf#install()' +qa
+    $SJB_HOME/usr/bin/nvim --headless +'CocInstall coc-tsserver' +qa
+    $SJB_HOME/usr/bin/nvim --headless +'TSInstallSync javascript typescript' +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &
 

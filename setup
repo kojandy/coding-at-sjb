@@ -106,7 +106,7 @@ setsid sh -c "
     ln -sf $SJB_HOME/usr/bin/nvim-root/AppRun $SJB_HOME/usr/bin/nvim
     $SJB_HOME/usr/bin/nvim --headless
     $SJB_HOME/usr/bin/nvim --headless +'call fzf#install()' +qa
-    $SJB_HOME/usr/bin/nvim --headless +'CocInstall coc-tsserver' +qa
+    $SJB_HOME/usr/bin/nvim --headless +'CocInstall -sync coc-tsserver' +qa
     $SJB_HOME/usr/bin/nvim --headless +'TSInstallSync javascript typescript lua' +qa
     notify-send '$NOTIFY_TITLE' 'neovim Installed!'
 " &

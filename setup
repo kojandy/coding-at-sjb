@@ -98,7 +98,7 @@ setsid sh -c "
 
 # install neovim
 setsid sh -c "
-    curl 'https://nodejs.org/dist/v15.8.0/node-v15.8.0-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
+    curl 'https://nodejs.org/dist/v15.12.0/node-v15.12.0-linux-x64.tar.xz' | tar -xJ --strip-components=1 -C $SJB_HOME/usr &
     curl -L 'https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage' -o $SJB_HOME/usr/bin/nvim
     wait
     chmod +x $SJB_HOME/usr/bin/nvim
